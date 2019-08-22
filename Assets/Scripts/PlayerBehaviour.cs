@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class PlayerBehaviour : MonoBehaviour
 {
-    private float horizontalInput, speed = 5f, forceJump = 5f;
+    private float horizontalInput, verticalInput, speed = 5f, forceJump = 5f;
+    private bool noChao;
+
     private SpriteRenderer sr;
     private Rigidbody2D rb;
     private Animator anim;
@@ -13,12 +15,22 @@ public class PlayerBehaviour : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        noChao = true;
     }
     void FixedUpdate(){
         Move();
-
+        Jump();
     }
 
+    private void Jump()
+    {
+        verticalInput = Input.GetAxisRaw("Vertical");
+        if (noChao && verticalInput > 0)
+        {
+            rb.velocity = new Vector2(0, forceJump);
+            noChao = false;
+        }
+    }
 
     private void Move()
     {
