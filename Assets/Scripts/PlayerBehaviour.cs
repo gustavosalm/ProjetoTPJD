@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerBehaviour : MonoBehaviour
 {
-    private float horizontalInput, verticalInput, speed = 5f, forceJump = 5f;
+    private float horizontalInput, verticalInput, speed = 5f, forceJump = 10f;
     private bool noChao;
 
     private SpriteRenderer sr;
@@ -24,11 +24,11 @@ public class PlayerBehaviour : MonoBehaviour
 
     private void Jump()
     {
+        noChao = Physics2D.OverlapCircle(transform.position - new Vector3(0, 0.6f), 0.5f, LayerMask.GetMask("Chao"));
         verticalInput = Input.GetAxisRaw("Vertical");
         if (noChao && verticalInput > 0)
         {
             rb.velocity = new Vector2(0, forceJump);
-            noChao = false;
         }
     }
 
