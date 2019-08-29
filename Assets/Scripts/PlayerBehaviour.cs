@@ -28,8 +28,14 @@ public class PlayerBehaviour : MonoBehaviour
         verticalInput = Input.GetAxisRaw("Vertical");
         if (noChao && verticalInput > 0)
         {
+            anim.SetBool("jump", true);
             rb.velocity = new Vector2(0, forceJump);
         }
+        else
+        {
+            anim.SetBool("jump", false);
+        }
+
     }
 
     private void Move()
