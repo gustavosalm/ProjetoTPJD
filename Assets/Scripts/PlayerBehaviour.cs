@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class PlayerBehaviour : MonoBehaviour
 {
@@ -27,7 +29,7 @@ public class PlayerBehaviour : MonoBehaviour
     {
         noChao = Physics2D.OverlapCircle(transform.position - new Vector3(0, 0.6f), 0.5f, LayerMask.GetMask("Chao"));
         verticalInput = joystick.Vertical;
-        if (noChao && verticalInput >= 0.5f)
+        if (noChao && (verticalInput >= 0.5f))
         {
             anim.SetBool("jump", true);
             rb.velocity = new Vector2(0, forceJump);
