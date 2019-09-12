@@ -43,18 +43,18 @@ public class PlayerBehaviour : MonoBehaviour
     {
         horizontalInput = joystick.Horizontal * speed;
 
-        anim.speed = (Mathf.Abs(horizontalInput) >= 0.2f)? (Mathf.Abs(horizontalInput) >= 0.8f)? 0.8f : Mathf.Abs(horizontalInput) : (anim.GetBool("walk") == false)? 1f : 0.2f ;
+        anim.speed = (Mathf.Abs(horizontalInput) >= 0.3f)? (Mathf.Abs(horizontalInput) >= 1.5f)? 1.5f : Mathf.Abs(horizontalInput) : (anim.GetBool("walk") == false)? 1f : 0f ;
 
-        if (horizontalInput > 0)
+        if (horizontalInput >= 0.6f)
         {
-            transform.Translate(Vector3.right * horizontalInput * Time.deltaTime);
             sr.flipX = false;
+            transform.Translate(Vector3.right * horizontalInput * Time.deltaTime);
             anim.SetBool("walk", true);
         }
-        else if (horizontalInput < 0)
+        else if (horizontalInput <= -0.6f)
         {
-            transform.Translate(Vector3.right * horizontalInput * Time.deltaTime);
             sr.flipX = true;
+            transform.Translate(Vector3.right * horizontalInput * Time.deltaTime);
             anim.SetBool("walk", true);
         }
         else
@@ -62,7 +62,7 @@ public class PlayerBehaviour : MonoBehaviour
             anim.SetBool("walk", false);
         }
 
-        horizontalInput = (joystick.Horizontal >= 0.2f) ? speed : (joystick.Horizontal <= -0.2f) ? -speed : 0f;
-        verticalInput = (joystick.Horizontal >= 0.2f) ? speed : (joystick.Horizontal <= -0.2f) ? -speed : 0f;
+        //horizontalInput = (joystick.Horizontal >= 0.2f) ? speed : (joystick.Horizontal <= -0.2f) ? -speed : 0f;
+        //verticalInput = (joystick.Vertical >= 0.2f) ? speed : (joystick.Vertical <= -0.2f) ? -speed : 0f;
     }
 }
